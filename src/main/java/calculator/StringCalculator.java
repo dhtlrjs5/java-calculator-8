@@ -7,6 +7,11 @@ public class StringCalculator {
      */
     public static void calculate() {
         String input = InputHandler.readInput();
+        if (input.isEmpty()) {
+            System.out.println("0");
+            return;
+        }
+
         Validator.validate(input);
     }
 }
