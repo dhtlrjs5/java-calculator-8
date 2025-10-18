@@ -2,11 +2,11 @@ package calculator;
 
 import java.util.List;
 
+//Controller
 public class StringCalculator {
 
     /**
      * 고려사항: 수가 엄청 크다면?
-     * controller
      */
     public static void calculate() {
         String input = InputHandler.readInput();
@@ -17,7 +17,12 @@ public class StringCalculator {
 
         String delimiter = DelimiterExtractor.extractDelimiter(input);
         String origin = Validator.validate(input);
-        List<Integer> parsedString = InputStringParser.parseString(origin, delimiter);
+        if (origin.isEmpty()) {
+            System.out.println("0");
+            return;
+        }
 
+        List<Integer> parsedString = InputStringParser.parseString(origin, delimiter);
+        int sum = StringAdder.addParsedNumber(parsedString);
     }
 }

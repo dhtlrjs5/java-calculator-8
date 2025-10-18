@@ -62,8 +62,8 @@ public class Validator {
 
         for (String numStr : numbers) {
             int num = Integer.parseInt(numStr);
-            if (num < 0) {
-                throw new IllegalArgumentException("음수가 포함되어 있습니다.");
+            if (num <= 0) {
+                throw new IllegalArgumentException("양수가 아닙니다.");
             }
         }
     }
