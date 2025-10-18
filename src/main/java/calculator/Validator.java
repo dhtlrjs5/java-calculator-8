@@ -25,9 +25,7 @@ public class Validator {
         Pattern pattern = Pattern.compile("^//.\\\\n.*");
         if (pattern.matcher(input).matches()) {
             int idx = input.indexOf('n');
-            if (idx == -1) {
-                throw new IllegalArgumentException("커스텀 구분자 형식 오류");
-            }
+            if (idx == -1) throw new IllegalArgumentException("커스텀 구분자 형식 오류");
 
             return input.substring(idx + 1);
         }
@@ -63,9 +61,7 @@ public class Validator {
 
         for (String numStr : numbers) {
             int num = Integer.parseInt(numStr);
-            if (num <= 0) {
-                throw new IllegalArgumentException("양수가 아닙니다.");
-            }
+            if (num <= 0) throw new IllegalArgumentException("양수가 아닙니다.");
         }
     }
 }

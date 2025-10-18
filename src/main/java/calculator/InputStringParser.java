@@ -10,9 +10,7 @@ public class InputStringParser {
         String[] tokens = str.split(delimiter);
         List<Integer> list = new ArrayList<>();
 
-        for (String token : tokens) {
-            list.add(Integer.parseInt(token));
-        }
+        for (String token : tokens) list.add(Integer.parseInt(token));
 
         return list;
     }

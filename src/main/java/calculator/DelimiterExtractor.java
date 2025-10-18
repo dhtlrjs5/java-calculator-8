@@ -11,9 +11,7 @@ public class DelimiterExtractor {
         Pattern pattern = Pattern.compile("^//(.)\\\\n", Pattern.DOTALL);
         Matcher matcher = pattern.matcher(input);
 
-        if (matcher.find()) {
-            delimiter += Pattern.quote(matcher.group(1));
-        }
+        if (matcher.find()) delimiter += Pattern.quote(matcher.group(1));
 
         delimiter += "]";
 
