@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
-
 public class ValidatorTest {
 
     @Test
@@ -27,14 +26,15 @@ public class ValidatorTest {
     @Test
     @DisplayName("커스텀 구분자 테스트")
     void customDelimiterTest() {
-        String input = "//;\n1;2;3";
+        String input = "//;\\n1;2;3";
 
         assertThatCode(() -> Validator.validate(input)).doesNotThrowAnyException();
     }
+
     @Test
     @DisplayName("커스텀 구분자와 기본 구분자 같이 사용")
     void basicAndCustomDelimiterTest() {
-        String input = "//;\n1;2,3";
+        String input = "//;\\n1;2,3";
 
         assertThatCode(() -> Validator.validate(input)).doesNotThrowAnyException();
     }
@@ -42,7 +42,7 @@ public class ValidatorTest {
     @Test
     @DisplayName("커스텀 구분자가 숫자일 때")
     void customDelimiterIsNumberTest() {
-        String input = "//4\n14243";
+        String input = "//4\\n14243";
 
         assertThatCode(() -> Validator.validate(input)).doesNotThrowAnyException();
     }
@@ -74,7 +74,7 @@ public class ValidatorTest {
     @Test
     @DisplayName("커스텀 구분자가 2자 이상인 경우 IllegalArgumentException")
     void longCustomDelimiterTest() {
-        String input = "//;;\n1;;2;;3";
+        String input = "//;;\\n1;;2;;3";
 
         assertThatThrownBy(() -> Validator.validate(input)).isInstanceOf(IllegalArgumentException.class);
     }
@@ -82,9 +82,12 @@ public class ValidatorTest {
     @Test
     @DisplayName("커스텀 구분자 형식이 잘못된 경우 IllegalArgumentException")
     void CustomDelimiterFormatIsInvalidTest() {
-        String input = "//;/n1;2,3";
+        String inputA = "//;/n1;2,3";
+        String inputB = "//;\n1;2,3";
+        String inputC = "//;\\\n1;2,3";
 
-        assertThatThrownBy(() -> Validator.validate(input)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> Validator.validate(inputA)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> Validator.validate(inputB)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> Validator.validate(inputC)).isInstanceOf(IllegalArgumentException.class);
     }
-
 }

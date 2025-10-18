@@ -22,8 +22,8 @@ public class StringCalculator {
             return;
         }
 
-        List<Integer> parsedString = InputStringParser.parseString(origin, delimiter);
-        int sum = StringAdder.addParsedNumber(parsedString);
+        Numbers numbers = InputStringParser.parseString(origin, delimiter);
+        int sum = numbers.sum();
         OutputView.viewResult(sum);
     }
 }
