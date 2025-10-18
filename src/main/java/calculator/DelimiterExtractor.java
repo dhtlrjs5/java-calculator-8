@@ -8,11 +8,11 @@ public class DelimiterExtractor {
     public static String extractDelimiter(String input) {
         String delimiter = "[,:";
 
-        Pattern pattern = Pattern.compile("^//(.)\\n");
+        Pattern pattern = Pattern.compile("^//(.)\\\\n", Pattern.DOTALL);
         Matcher matcher = pattern.matcher(input);
 
         if (matcher.find()) {
-            delimiter += Pattern.quote(matcher.group(1));
+            delimiter += matcher.group(1);
         }
 
         delimiter += "]";

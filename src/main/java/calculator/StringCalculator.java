@@ -1,9 +1,12 @@
 package calculator;
 
+import java.util.List;
+
 public class StringCalculator {
 
     /**
      * 고려사항: 수가 엄청 크다면?
+     * controller
      */
     public static void calculate() {
         String input = InputHandler.readInput();
@@ -12,6 +15,9 @@ public class StringCalculator {
             return;
         }
 
-        Validator.validate(input);
+        String delimiter = DelimiterExtractor.extractDelimiter(input);
+        String origin = Validator.validate(input);
+        List<Integer> parsedString = InputStringParser.parseString(origin, delimiter);
+
     }
 }

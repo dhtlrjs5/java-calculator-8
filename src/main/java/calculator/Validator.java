@@ -4,11 +4,13 @@ import java.util.regex.Pattern;
 
 public class Validator {
 
-    public static void validate(String input) {
+    public static String validate(String input) {
         String delimiter = DelimiterExtractor.extractDelimiter(input);
         String origin = validateCustomDelimiter(input);
         validateInput(origin, delimiter);
         validatePositiveNumber(origin, delimiter);
+
+        return origin;
     }
 
     /**
@@ -20,9 +22,9 @@ public class Validator {
             return input;
         }
 
-        Pattern pattern = Pattern.compile("^//.\\n.*");
+        Pattern pattern = Pattern.compile("^//.\\\\n.*");
         if (pattern.matcher(input).matches()) {
-            int idx = input.indexOf('\n');
+            int idx = input.indexOf('n');
             if (idx == -1) {
                 throw new IllegalArgumentException("커스텀 구분자 형식 오류");
             }
