@@ -58,6 +58,7 @@ public class Validator {
      * 양수로 이루어져 있는지 확인
      */
     private static void validatePositiveNumber(String input, String delimiter) {
+
         String[] numbers = input.split(delimiter);
 
         for (String numStr : numbers) {

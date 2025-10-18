@@ -12,7 +12,7 @@ public class DelimiterExtractor {
         Matcher matcher = pattern.matcher(input);
 
         if (matcher.find()) {
-            delimiter += matcher.group(1);
+            delimiter += Pattern.quote(matcher.group(1));
         }
 
         delimiter += "]";
