@@ -24,5 +24,6 @@ public class StringCalculator {
 
         List<Integer> parsedString = InputStringParser.parseString(origin, delimiter);
         int sum = StringAdder.addParsedNumber(parsedString);
+        OutputView.viewResult(sum);
     }
 }
