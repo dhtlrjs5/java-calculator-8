@@ -5,7 +5,7 @@ import java.util.List;
 
 public class InputStringParser {
 
-    public static Numbers parseString(String str, String delimiter) {
+    public Numbers parseString(String str, String delimiter) {
 
         String[] tokens = str.split(delimiter);
         List<Integer> list = new ArrayList<>();

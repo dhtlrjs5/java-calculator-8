@@ -1,5 +1,6 @@
 package calculator;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -7,12 +8,20 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class StringAdderTest {
 
-    private int calculate(String inputString) {
-        String delimiter = DelimiterExtractor.extractDelimiter(inputString);
-        String origin = Validator.validate(inputString);
-        Numbers numbers = InputStringParser.parseString(origin, delimiter);
+    private Calculator calculator;
 
-        return numbers.sum();
+    @BeforeEach
+    void setUp() {
+        DelimiterExtractor extractor = new DelimiterExtractor();
+        InputNormalizer normalizer = new InputNormalizer();
+        Validator validator = new Validator(normalizer, extractor);
+        InputStringParser parser = new InputStringParser();
+
+        this.calculator = new Calculator(validator, parser, extractor);
+    }
+
+    private int calculate(String inputString) {
+        return calculator.calculate(inputString);
     }
 
     @Test

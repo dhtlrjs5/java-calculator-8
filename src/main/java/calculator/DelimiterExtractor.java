@@ -8,7 +8,7 @@ public class DelimiterExtractor {
     private static final String DEFAULT_DELIMITER = "[,:]";
     private static final String CUSTOM_DELIMITER_PATTERN = "^//(.)\\\\n";
 
-    public static String extractDelimiter(String input) {
+    public String extractDelimiter(String input) {
         String delimiter = DEFAULT_DELIMITER;
 
         Pattern pattern = Pattern.compile(CUSTOM_DELIMITER_PATTERN, Pattern.DOTALL);

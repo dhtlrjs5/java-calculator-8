@@ -1,5 +1,6 @@
 package calculator;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -7,12 +8,22 @@ import static org.assertj.core.api.Assertions.*;
 
 public class ValidatorTest {
 
+    private Validator validator;
+
+    @BeforeEach
+    void setUp() {
+        DelimiterExtractor extractor = new DelimiterExtractor();
+        InputNormalizer normalizer = new InputNormalizer();
+
+        validator = new Validator(normalizer, extractor);
+    }
+
     @Test
     @DisplayName("기본 구분자 테스트")
     void basicDelimiterTest() {
         String input = "1,2,3";
 
-        assertThatCode(() -> Validator.validate(input)).doesNotThrowAnyException();
+        assertThatCode(() -> validator.validate(input)).doesNotThrowAnyException();
     }
 
     @Test
@@ -20,7 +31,7 @@ public class ValidatorTest {
     void basicDelimitersTest() {
         String input = "1,2:3";
 
-        assertThatCode(() -> Validator.validate(input)).doesNotThrowAnyException();
+        assertThatCode(() -> validator.validate(input)).doesNotThrowAnyException();
     }
 
     @Test
@@ -28,7 +39,7 @@ public class ValidatorTest {
     void customDelimiterTest() {
         String input = "//;\\n1;2;3";
 
-        assertThatCode(() -> Validator.validate(input)).doesNotThrowAnyException();
+        assertThatCode(() -> validator.validate(input)).doesNotThrowAnyException();
     }
 
     @Test
@@ -36,7 +47,7 @@ public class ValidatorTest {
     void basicAndCustomDelimiterTest() {
         String input = "//;\\n1;2,3";
 
-        assertThatCode(() -> Validator.validate(input)).doesNotThrowAnyException();
+        assertThatCode(() -> validator.validate(input)).doesNotThrowAnyException();
     }
 
     @Test
@@ -44,7 +55,7 @@ public class ValidatorTest {
     void customDelimiterIsNumberTest() {
         String input = "//4\\n14243";
 
-        assertThatCode(() -> Validator.validate(input)).doesNotThrowAnyException();
+        assertThatCode(() -> validator.validate(input)).doesNotThrowAnyException();
     }
 
     @Test
@@ -52,7 +63,7 @@ public class ValidatorTest {
     void notNumberTest() {
         String input = "1,a,3";
 
-        assertThatThrownBy(() -> Validator.validate(input)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.validate(input)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
@@ -60,7 +71,7 @@ public class ValidatorTest {
     void consecutiveDelimiterTest() {
         String input = "1,,2";
 
-        assertThatThrownBy(() -> Validator.validate(input)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.validate(input)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
@@ -68,7 +79,7 @@ public class ValidatorTest {
     void negativeNumberTest() {
         String input = "1,-2,3";
 
-        assertThatThrownBy(() -> Validator.validate(input)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.validate(input)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
@@ -76,7 +87,7 @@ public class ValidatorTest {
     void longCustomDelimiterTest() {
         String input = "//;;\\n1;;2;;3";
 
-        assertThatThrownBy(() -> Validator.validate(input)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.validate(input)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
@@ -86,8 +97,8 @@ public class ValidatorTest {
         String inputB = "//;\n1;2,3";
         String inputC = "//;\\\n1;2,3";
 
-        assertThatThrownBy(() -> Validator.validate(inputA)).isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> Validator.validate(inputB)).isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> Validator.validate(inputC)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.validate(inputA)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.validate(inputB)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> validator.validate(inputC)).isInstanceOf(IllegalArgumentException.class);
     }
 }
