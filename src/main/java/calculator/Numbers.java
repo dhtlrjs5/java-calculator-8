@@ -1,5 +1,6 @@
 package calculator;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Numbers {
@@ -7,7 +8,7 @@ public class Numbers {
     private final List<Integer> numbers;
 
     public Numbers(List<Integer> numbers) {
-        this.numbers = numbers;
+        this.numbers = Collections.unmodifiableList(numbers);
     }
 
     public int sum() {
