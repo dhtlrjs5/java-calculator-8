@@ -5,15 +5,18 @@ import java.util.regex.Pattern;
 
 public class DelimiterExtractor {
 
-    public static String extractDelimiter(String input) {
-        String delimiter = "[,:";
+    private static final String DEFAULT_DELIMITER = "[,:]";
+    private static final String CUSTOM_DELIMITER_PATTERN = "^//(.)\\\\n";
 
-        Pattern pattern = Pattern.compile("^//(.)\\\\n", Pattern.DOTALL);
+    public static String extractDelimiter(String input) {
+        String delimiter = DEFAULT_DELIMITER;
+
+        Pattern pattern = Pattern.compile(CUSTOM_DELIMITER_PATTERN, Pattern.DOTALL);
         Matcher matcher = pattern.matcher(input);
 
-        if (matcher.find()) delimiter += Pattern.quote(matcher.group(1));
-
-        delimiter += "]";
+        if (matcher.find()) {
+            delimiter = delimiter.substring(0, delimiter.length() - 1) + Pattern.quote(matcher.group(1)) + "]";
+        }
 
         return delimiter;
     }
