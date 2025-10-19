@@ -7,7 +7,7 @@ import calculator.model.domain.Validator;
 
 public class Calculator {
 
-    private static final int ZERO = 0;
+    private static final long ZERO = 0L;
 
     private final Validator validator;
     private final InputStringParser inputStringParser;
@@ -19,7 +19,7 @@ public class Calculator {
         this.delimiterExtractor = delimiterExtractor;
     }
 
-    public int calculate(String input) {
+    public long calculate(String input) {
 
         if (input.isEmpty()) {
             return ZERO;

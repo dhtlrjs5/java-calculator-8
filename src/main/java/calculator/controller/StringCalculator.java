@@ -24,7 +24,7 @@ public class StringCalculator {
 
         String input = inputHandler.readInput();
 
-        int sum = calculator.calculate(input);
+        long sum = calculator.calculate(input);
 
         outputView.viewResult(sum);
     }

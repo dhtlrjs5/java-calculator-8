@@ -5,15 +5,15 @@ import java.util.List;
 
 public class Numbers {
 
-    private final List<Integer> numbers;
+    private final List<Long> numbers;
 
-    public Numbers(List<Integer> numbers) {
+    public Numbers(List<Long> numbers) {
         this.numbers = Collections.unmodifiableList(numbers);
     }
 
-    public int sum() {
+    public long sum() {
         return numbers.stream()
-                .mapToInt(Integer::intValue)
+                .mapToLong(Long::longValue)
                 .sum();
     }
 }

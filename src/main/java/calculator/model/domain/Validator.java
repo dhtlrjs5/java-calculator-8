@@ -51,8 +51,8 @@ public class Validator {
         String[] numbers = input.split(delimiter);
 
         for (String numStr : numbers) {
-            int num = Integer.parseInt(numStr);
-            if (num <= 0) throw new IllegalArgumentException(NOT_POSITIVE_NUMBER);
+            long num = Long.parseLong(numStr);
+            if (num <= 0L) throw new IllegalArgumentException(NOT_POSITIVE_NUMBER);
         }
     }
 }

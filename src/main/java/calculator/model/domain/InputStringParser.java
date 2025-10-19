@@ -8,9 +8,9 @@ public class InputStringParser {
     public Numbers parseString(String str, String delimiter) {
 
         String[] tokens = str.split(delimiter);
-        List<Integer> list = new ArrayList<>();
+        List<Long> list = new ArrayList<>();
 
-        for (String token : tokens) list.add(Integer.parseInt(token));
+        for (String token : tokens) list.add(Long.parseLong(token));
 
         return new Numbers(list);
     }
