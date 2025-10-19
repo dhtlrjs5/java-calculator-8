@@ -1,4 +1,4 @@
-package calculator;
+package calculator.common;
 
 public class ErrorMessageConstants {
     public static final String INVALID_CUSTOM_DELIMITER = "커스텀 구분자 형식이 올바르지 않습니다.";

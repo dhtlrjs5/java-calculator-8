@@ -1,8 +1,8 @@
-package calculator;
+package calculator.model.domain;
 
 import java.util.regex.Pattern;
 
-import static calculator.ErrorMessageConstants.INVALID_CUSTOM_DELIMITER;
+import static calculator.common.ErrorMessageConstants.INVALID_CUSTOM_DELIMITER;
 
 public class InputNormalizer {
 

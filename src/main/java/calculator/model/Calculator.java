@@ -1,4 +1,9 @@
-package calculator;
+package calculator.model;
+
+import calculator.model.domain.DelimiterExtractor;
+import calculator.model.domain.InputStringParser;
+import calculator.model.domain.Numbers;
+import calculator.model.domain.Validator;
 
 public class Calculator {
 

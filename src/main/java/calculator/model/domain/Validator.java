@@ -1,8 +1,8 @@
-package calculator;
+package calculator.model.domain;
 
 import java.util.regex.Pattern;
 
-import static calculator.ErrorMessageConstants.*;
+import static calculator.common.ErrorMessageConstants.*;
 
 public class Validator {
 
